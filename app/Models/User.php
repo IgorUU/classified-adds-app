@@ -21,7 +21,13 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
+
+    public function ads()
+    {
+        return $this->hasMany(Ad::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.
