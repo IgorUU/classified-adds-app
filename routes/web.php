@@ -7,6 +7,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Admin routes (admin-only)
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
+    Route::get('/', function () {
+        return view('admin.dashboard');
+    })->name('admin.dashboard');
+
+    // Admin CRUD routes will go here later
+    // Route::resource('users', AdminUserController::class);
+    // Route::resource('categories', AdminCategoryController::class);
+    // Route::resource('ads', AdminAdController::class);
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
