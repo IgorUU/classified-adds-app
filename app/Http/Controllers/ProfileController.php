@@ -57,4 +57,11 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+    public function ads() {
+        $user = Auth::user();
+        $ads = $user->ads()->latest()->get();
+
+        return view('profile.ads', compact('user', 'ads'));
+    }
 }

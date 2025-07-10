@@ -1,0 +1,89 @@
+.ad {
+  position: relative;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid #f3f4f6;
+  min-height: 100px;
+}
+
+.ad-message {
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  color: #111827;
+  /* Tailwind's gray-900 */
+  line-height: 1.5;
+}
+
+.ad-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.ads-list--container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+  gap: 1rem;
+}
+
+.ad-user-name {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 0.8rem;
+  color: #374151;
+}
+
+.ad-user-name-text {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.created-at {
+  margin: 0;
+  color: #6b7280;
+}
+
+.ad-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.ad-actions a,
+.delete-button {
+  text-decoration: none;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background-color: #e5e7eb;
+  /* Tailwind gray-200 */
+  color: #1f2937;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.ad-actions a:hover,
+.delete-button:hover {
+  background-color: #d1d5db;
+  /* gray-300 */
+}
+
+.ad-actions a:first-child {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.ad-actions a:first-child:hover {
+  background-color: #2563eb;
+}
+
+.delete-button:hover {
+  background-color: red;
+  color: white;
+}

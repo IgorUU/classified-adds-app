@@ -3,7 +3,9 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Ad;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -23,11 +25,6 @@ class User extends Authenticatable
         'password',
         'role',
     ];
-
-    public function ads()
-    {
-        return $this->hasMany(Ad::class);
-    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -50,5 +47,9 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function ads(): HasMany {
+        return $this->hasMany(Ad::class);
     }
 }
