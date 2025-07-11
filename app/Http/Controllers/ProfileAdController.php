@@ -38,8 +38,17 @@ class ProfileAdController extends Controller
         $data = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'category_id' => 'required|exists:categories,id'
+            'image' => 'required|image|max:2048',
+            'category_id' => 'required|exists:categories,id',
+            'price' => 'required|numeric|min:0',
+            'location' => 'nullable|string|max:255',
+            'phone' => 'nullable|string|max:13',
         ]);
+
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('ads', 'public');
+            $data['image'] = $path;
+        }
 
         $request->user()->ads()->create($data);
 
