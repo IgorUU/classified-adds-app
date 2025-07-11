@@ -13,7 +13,7 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
     <!-- Styles - Custom CSS -->
-    <link href="{{ asset('css/styles.css') }}" rel="stylesheet" type="text/css">
+    <!-- <link href="{{ asset('css/styles.css') }}" rel="stylesheet" type="text/css"> -->
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
