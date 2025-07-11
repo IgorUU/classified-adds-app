@@ -22,7 +22,7 @@
                 </p>
                 <p><strong>Posted by:</strong> {{ $ad->user->name }}</p>
                 <p><strong>Description:</strong> {{ $ad->description }}</p>
-                <p><strong>Condition:</strong> {{ $ad->condition }}</p>
+                <p><strong>Condition:</strong> {{ ucfirst($ad->condition) }} </p>
                 <p><strong>Location:</strong> {{ $ad->location }}</p>
                 <p><strong>Phone:</strong> {{ $ad->phone }}</p>
                 <p><strong>Price:</strong></p><span class="text-lg font-semibold text-indigo-600 mt-2">{{ number_format($ad->price, 2) }} RSD</span>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="max-w-2xl mx-auto space-y-4">
+    <div class="max-w-2xl mx-auto space-y-4 mt-2">
         @foreach ($ads as $ad)
             <x-ad-card :ad="$ad" />
         @endforeach
