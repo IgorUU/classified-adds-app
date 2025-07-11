@@ -5,7 +5,6 @@ namespace App\View\Components;
 use App\Models\Ad;
 use Closure;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Component;
 
 class AdCard extends Component
@@ -34,12 +33,5 @@ class AdCard extends Component
      */
     public function formattedPrice(): string {
         return number_format($this->ad->price, 2) . ' RSD';
-    }
-
-    /**
-     * Checks if the authenticated user can perform actions on the ad.
-     */
-    public function showActions(): bool {
-        return Auth::check() && Auth::id() === $this->ad->user_id;
     }
 }
