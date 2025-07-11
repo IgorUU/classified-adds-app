@@ -9,7 +9,7 @@
         <div class="flex-1">
             <h2 class="text-xl font-bold text-gray-800">{{ $ad->title }}</h2>
             <p class="text-gray-600">{{ $ad->description }}</p>
-            <p class="text-lg font-semibold text-indigo-600 mt-2">{{ number_format($ad->price, 2) }} RSD</p>
+            <p class="text-lg font-semibold text-indigo-600 mt-2">{{ $formattedPrice() }}</p>
         </div>
     </div>
 </a>
