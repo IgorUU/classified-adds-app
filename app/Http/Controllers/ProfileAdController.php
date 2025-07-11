@@ -17,7 +17,7 @@ class ProfileAdController extends Controller
      */
     public function index()
     {
-        $ads = Auth::user()->ads()->with('category')->paginate(10);
+        $ads = Auth::user()->ads()->with('category')->latest()->paginate(10);
         return view('profile.ads.index', compact('ads'));
     }
 
