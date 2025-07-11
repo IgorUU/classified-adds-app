@@ -1,14 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>Ads in Category: {{ $category->name }}</h1>
+<div class="max-w-2xl mx-auto mt-8">
+    <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">{{ $category->name }}</h1>
 
-@foreach ($ads as $ad)
-<div>
-  <a href="{{ route('ad.show', $ad) }}">{{ $ad->title }}</a>
-  <p>Posted by: {{ $ad->user->name }}</p>
+    <div class="space-y-4">
+        @foreach ($ads as $ad)
+        <x-ad-card :ad="$ad" />
+        @endforeach
+    </div>
 </div>
-@endforeach
-
-{{ $ads->links() }}
 @endsection
