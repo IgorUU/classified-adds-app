@@ -10,6 +10,6 @@ class CategoryController extends Controller
   public function show(Category $category)
   {
     $ads = $category->ads()->with('user')->latest()->paginate(10);
-    return view('category.show', compact('ads', 'category'));
+    return view('category.show', compact('category', 'ads'));
   }
 }

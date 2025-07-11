@@ -10,4 +10,7 @@
         @endforeach
     </div>
 </div>
+<div>
+    {{ $ads->links() }}
+</div>
 @endsection
