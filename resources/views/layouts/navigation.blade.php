@@ -46,7 +46,7 @@
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
-                        <x-dropdown-link :href="route('profile.ads')">
+                        <x-dropdown-link :href="route('profile.ads.index')">
                             {{ __('My ads') }}
                         </x-dropdown-link>
 
