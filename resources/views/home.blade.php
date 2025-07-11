@@ -1,9 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-    @foreach ($ads as $ad)
-        <x-ad-card :ad="$ad" />
-    @endforeach
+    <div class="max-w-2xl mx-auto space-y-4">
+        @foreach ($ads as $ad)
+            <x-ad-card :ad="$ad" />
+        @endforeach
+    </div>
 
-    {{ $ads->links() }}
+    <div class="mt-6 flex justify-center">
+        {{ $ads->links() }}
+    </div>
 @endsection
