@@ -49,7 +49,21 @@ class User extends Authenticatable
         ];
     }
 
+    /**
+     * Returns users ads.
+     *
+     * @return HasMany
+     */
     public function ads(): HasMany {
         return $this->hasMany(Ad::class);
+    }
+
+    /**
+     * The user has admin role.
+     *
+     * @return boolean
+     */
+    public function isAdmin() {
+        return $this->role === 'admin';
     }
 }

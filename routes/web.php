@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminAdController;
 use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\ProfileAdController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Public\AdController;
 use App\Http\Controllers\Public\CategoryController;
@@ -23,11 +24,16 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::resource('ads', AdminAdController::class);
 });
 
+// Profile routes.
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/profile/ads', [ProfileController::class, 'ads'])->name('profile.ads');
+});
+
+// Profile ads routes.
+Route::middleware(['auth'])->prefix('profile')->name('profile.')->group(function () {
+    Route::resource('ads', ProfileAdController::class)->except(['show']);
 });
 
 require __DIR__.'/auth.php';
