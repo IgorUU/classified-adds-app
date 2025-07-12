@@ -26,7 +26,9 @@ class AdminCategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.categories.create');
+        $categories = Category::all();
+
+        return view('admin.categories.create', compact('categories'));
     }
 
     /**
@@ -34,9 +36,9 @@ class AdminCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        // Include parent id
         $data = $request->validate([
             'name' => 'required|string|max:255',
+            'parent_id' => 'nullable|exists:categories,id'
         ]);
 
         Category::create($data);
@@ -51,7 +53,9 @@ class AdminCategoryController extends Controller
     {
         $this->authorize('update', $category);
 
-        return view('admin.categories.edit', compact('category'));
+        $categories = Category::where('id', '!=', $category->id)->get();
+
+        return view('admin.categories.edit', compact('category', 'categories'));
     }
 
     /**
@@ -59,9 +63,17 @@ class AdminCategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        // Include parent id
         $data = $request->validate([
             'name' => 'required|string|max:255',
+            'parent_id' => [
+                'nullable',
+                'exists:categories,id',
+                function ($attribute, $value, $fail) use ($category) {
+                    if (!$category->parent_id && $value) {
+                        $fail('You cannot assign a parent to a top level category.');
+                    }
+                },
+            ],
         ]);
 
         $category->update($data);

@@ -33,7 +33,19 @@
                 class="border rounded px-3 py-2 w-64">
         </div>
 
-
+        @if ($category->parent_id)
+        <div class="flex flex-col items-center">
+            <label for="parent_id" class="font-medium">Parent category:</label>
+            <select name="parent_id" class="border rounded px-3 py-2">
+                <option value="">-- None --</option>
+                @foreach($categories as $parent)
+                <option value="{{ $parent->id }}" {{ old('parent_id',
+                    $category->parent_id) == $parent->id ? 'selected' : ''
+                    }}>{{ $parent->name }}</option>
+                @endforeach
+            </select>
+        </div>
+        @endif
 
         <div class="flex justify-center gap-4 mt-4">
             <x-primary-button type="submit">Save changes</x-primary-button>
@@ -48,6 +60,7 @@
     onclick="return confirm('Are you sure you want to delete this category?')">
     @csrf
     @method('DELETE')
-    <x-danger-button class="mt-6" type="submit">Delete category</x-danger-button>
+    <x-danger-button class="mt-6" type="submit">Delete category
+    </x-danger-button>
 </form>
 @endsection
