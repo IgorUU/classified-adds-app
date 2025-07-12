@@ -13,7 +13,7 @@ class AdminAdController extends Controller
      */
     public function index()
     {
-        $ads = Ad::with(['user', 'category'])->paginate(15);
+        $ads = Ad::with(['user', 'category'])->latest()->paginate(15);
         return view('admin.ads.index', compact('ads'));
     }
 

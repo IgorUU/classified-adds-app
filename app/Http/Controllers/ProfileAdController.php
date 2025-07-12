@@ -53,7 +53,7 @@ class ProfileAdController extends Controller
 
         $request->user()->ads()->create($data);
 
-        return Redirect::route('profile.ads.index')->with('success', 'Ad created');
+        return Redirect::route($this->getRedirectRoute())->with('success', 'Ad created');
     }
 
     /**
@@ -92,7 +92,7 @@ class ProfileAdController extends Controller
 
         $ad->update($data);
 
-        return Redirect::route('profile.ads.index')->with('success', 'Add succesfully updated');
+        return Redirect::route($this->getRedirectRoute())->with('success', 'Add succesfully updated');
     }
 
     /**
@@ -104,6 +104,13 @@ class ProfileAdController extends Controller
 
         $ad->delete();
 
-        return Redirect::route('profile.ads.index')->with('success', 'Add succesfully removed.');
+        return Redirect::route($this->getRedirectRoute())->with('success', 'Add succesfully removed.');
+    }
+
+    /**
+     * Get the redirect route based on the user's role.
+     */
+    protected function getRedirectRoute(): string {
+        return Auth::user()->isAdmin() ? 'admin.ads.index' : 'profile.ads.index';
     }
 }
