@@ -32,6 +32,7 @@
         </header>
         @endisset
 
+        <!-- Change this to be sidebar section -->
         <div class="flex">
             <aside class="w-64 bg-gray-100 p-4 border">
                 <h2 class="text-2xl font-bold mb-4">Categories</h2>

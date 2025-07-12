@@ -17,8 +17,8 @@ Route::get('/category/{category}', [CategoryController::class, 'show'])->name('c
 Route::get('/ad/{ad}', [AdController::class, 'show'])->name('ad.show');
 
 // Admin routes.
-Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
-    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
     Route::resource('users', AdminUserController::class);
     Route::resource('categories', AdminCategoryController::class);
     Route::resource('ads', AdminAdController::class);
