@@ -4,10 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class AdminCategoryController extends Controller
 {
+    use AuthorizesRequests;
+
     /**
      * Display a listing of the resource.
      */
@@ -22,7 +26,7 @@ class AdminCategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.categories.create');
     }
 
     /**
@@ -30,31 +34,39 @@ class AdminCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        // Include parent id
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        $request->store($data);
+
+        return Redirect::route('admin.categories.index')->with('success', 'Category created');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Category $category)
     {
-        //
+        $this->authorize('update', $category);
+
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Category $category)
     {
-        //
+        // Include parent id
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        $category->update($data);
+
+        return Redirect::route('admin.categories.index')->with('success', 'Category updated');
     }
 
     /**
