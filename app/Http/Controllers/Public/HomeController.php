@@ -12,6 +12,10 @@ class HomeController extends Controller
   {
     $ads = Ad::with(['category', 'user'])->latest()->paginate(10);
     $categories = Category::all();
-    return view('home', compact('ads', 'categories'));
+
+    $minPrice = Ad::min('price');
+    $maxPrice = Ad::max('price');
+
+    return view('home', compact('ads', 'categories', 'minPrice', 'maxPrice'));
   }
 }

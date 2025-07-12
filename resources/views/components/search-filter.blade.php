@@ -1,26 +1,45 @@
-<div>
-    <form method="GET" action="{{ route('home') }}"></form>
-        <label for="title_description">Ad</label>
-        <input type="text" name="title_description">
-        <label for="price">Price</label>
-        <!-- Get price chunks dynamically from ad prices.
-        Get the minimum and maximum price and then create chunks. -->
-        <select name="price">
-            <option value="">-- None --</option>
-            <option value="0-1000">0 - 1000</option>
-            <option value="1000-3000">1000 - 3000</option>
-            <option value="3000">over 3000</option>
-        </select>
-        <label for="location">Location</label>
-        <input type="text" name="location" />
-        <label for="category">Category</label>
-        <select name="category">
-            <option value="">-- None --</option>
-            @foreach ($categories as $category)
-            <option value="{{ old('category'), $category->id }}">{{ $category->name
-                }}</option>
-            @endforeach
-        </select>
-        <x-primary-button type="submit">Search</x-primary-button>
-    </form>
-</div>
+<form method="GET" action="{{ route('home') }}" class="space-y-4">
+
+    <div class="flex items-center gap-4">
+        <div>
+            <label for="title_description" class="block text-sm font-medium">Ad</label>
+            <input type="text" name="title_description"
+                class="border rounded px-3 py-2 w-48">
+        </div>
+
+        <div class="flex-1">
+            <label for="price" class="block text-sm font-medium">Price</label>
+
+            <div class="flex items-center gap-2">
+                <span id="min-label" class="text-xs text-gray-600 w-16 text-right mr-4"></span>
+                <div id="price-slider"
+                    data-min="{{ $minPrice }}"
+                    data-max="{{ $maxPrice }}"
+                    class="flex-1"></div>
+                <span id="max-label" class="text-xs text-gray-600 w-16 text-left ml-4"></span>
+            </div>
+            <input type="hidden" name="price_min" id="price_min">
+            <input type="hidden" name="price_max" id="price_max">
+        </div>
+    </div>
+
+    <!-- Location & category -->
+    <div class="flex items-center gap-4">
+        <div>
+            <label for="location" class="block text-sm font-medium">Location</label>
+            <input type="text" name="location" class="border rounded px-3 py-2 w-48">
+        </div>
+
+        <div>
+            <label for="category" class="block text-sm font-medium">Category</label>
+            <select name="category" class="border rounded px-3 py-2 w-48">
+                <option value="">-- None --</option>
+                @foreach ($categories as $category)
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+
+    <x-primary-button type="submit">Search</x-primary-button>
+</form>

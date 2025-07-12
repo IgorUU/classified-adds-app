@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <x-search-filter :categories="$categories" />
+    <x-search-filter :categories="$categories" :minPrice="$minPrice" :maxPrice="$maxPrice"/>
     <div class="max-w-2xl mx-auto space-y-4 mt-2">
         @foreach ($ads as $ad)
             <x-ad-card :ad="$ad" />

@@ -38,24 +38,24 @@
                 <h2 class="text-2xl font-bold mb-4">Categories</h2>
                 <ul class="space-y-2">
                     @foreach ($sidebarCategories as $category)
-                        <li>
-                            <a href="{{ route('category.show', $category) }}" class="text-blue-900">
-                                {{ $category->name }}
-                            </a>
+                    <li>
+                        <a href="{{ route('category.show', $category) }}" class="text-blue-900">
+                            {{ $category->name }}
+                        </a>
 
-                            @if ($category->children->count())
-                            <ul class="ml-4 mt-1 space-y-1">
-                                @foreach ($category->children as $child)
-                                <li>
-                                    <a href="{{ route('category.show', $child) }}"
-                                        class="text-sm text-blue-500">
-                                         {{ $child->name }}
-                                    </a>
-                                </li>
-                                @endforeach
-                            </ul>
-                            @endif
-                        </li>
+                        @if ($category->children->count())
+                        <ul class="ml-4 mt-1 space-y-1">
+                            @foreach ($category->children as $child)
+                            <li>
+                                <a href="{{ route('category.show', $child) }}"
+                                    class="text-sm text-blue-500">
+                                    {{ $child->name }}
+                                </a>
+                            </li>
+                            @endforeach
+                        </ul>
+                        @endif
+                    </li>
                     @endforeach
                 </ul>
             </aside>
