@@ -17,4 +17,6 @@
         @endforeach
     </div>
 </div>
+
+{{ $ads->links() }}
 @endsection
