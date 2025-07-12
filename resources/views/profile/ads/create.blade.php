@@ -25,7 +25,7 @@
 
         <div class="flex flex-col items-center">
             <label for="description" class="block font-medium">Description:</label>
-            <textarea name="description" placeholder="Ad description"
+            <textarea name="description" placeholder="Ad description" rows="10"
                 class="border rounded px-3 py-2">{{ old('description') }}</textarea>
         </div>
 

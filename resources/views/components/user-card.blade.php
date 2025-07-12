@@ -1,4 +1,4 @@
-<a href="{{ route('profile.edit', $user) }}">
+<a href="{{ route('admin.users.edit', $user) }}">
   <div class="bg-white shadow-md rounded-lg p-4 mb-4 flex flex-col md:flex-row gap-4">
     @if ($user->image)
     <img src="{{ asset('storage/' . $ad->image) }}"
