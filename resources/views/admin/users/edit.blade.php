@@ -47,6 +47,12 @@
           </div>
 
           <div class="mb-4">
+            <label for="password_confirmation" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+            <input id="password_confirmation" name="password_confirmation" type="password"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+          </div>
+
+          <div class="mb-4">
             <label for="role" class="block text-sm font-medium text-gray-700">Role</label>
             <select id="role" name="role" required
               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
@@ -65,10 +71,10 @@
 
 
         <form method="POST" action="{{ route('admin.users.destroy', $user) }}"
-            onclick="return confirm('Are you sure you want to delete this user? You are going to delete all of his ads also.')">
-            @csrf
-            @method('DELETE')
-            <x-danger-button type="submit">Delete User</x-danger-button>
+          onclick="return confirm('Are you sure you want to delete this user? You are going to delete all of his ads also.')">
+          @csrf
+          @method('DELETE')
+          <x-danger-button type="submit">Delete User</x-danger-button>
         </form>
 
       </div>

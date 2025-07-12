@@ -95,6 +95,6 @@ class AdminCategoryController extends Controller
 
         $category->delete();
 
-        return Redirect::route('admin.categories.index')->with('success', 'Add succesfully removed.');
+        return Redirect::route('admin.categories.index')->with('success', 'Category succesfully removed.');
     }
 }

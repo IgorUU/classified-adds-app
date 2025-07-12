@@ -80,9 +80,9 @@ class ProfileAdController extends Controller
             'image' => 'nullable|image|max:2048',
             'category_id' => 'required|exists:categories,id',
             'price' => 'required|numeric|min:0',
-            'location' => 'nullable|string|max:255',
-            'phone' => 'nullable|string|max:13',
-            'condition' => 'nullable|in:new,used',
+            'location' => 'required|string|max:255',
+            'phone' => 'required|string|max:13',
+            'condition' => 'required|in:new,used',
         ]);
 
         if ($request->hasFile('image')) {
