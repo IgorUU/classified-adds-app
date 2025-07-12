@@ -5,9 +5,16 @@ export function initPriceSlider(minPrice, maxPrice) {
     const slider = document.getElementById("price-slider");
 
     if (!slider) return;
+    const priceMin = document.getElementById("price_min");
+    const priceMax = document.getElementById("price_max");
+    const minLabel = document.getElementById("min-label");
+    const maxLabel = document.getElementById("max-label");
+
+    const currentMin = parseFloat(priceMin.value) || minPrice;
+    const currentMax = parseFloat(priceMax.value) || maxPrice;
 
     noUiSlider.create(slider, {
-        start: [minPrice, maxPrice],
+        start: [currentMin, currentMax],
         connect: true,
         range: {
             min: minPrice,
@@ -15,11 +22,6 @@ export function initPriceSlider(minPrice, maxPrice) {
         },
         step: 10,
     });
-
-    const priceMin = document.getElementById("price_min");
-    const priceMax = document.getElementById("price_max");
-    const minLabel = document.getElementById("min-label");
-    const maxLabel = document.getElementById("max-label");
 
     slider.noUiSlider.on("update", (values) => {
         const [valMin, valMax] = values.map((v) => Math.round(v));
@@ -30,6 +32,6 @@ export function initPriceSlider(minPrice, maxPrice) {
     });
 
     // Set initial labels
-    minLabel.textContent = `${minPrice} RSD`;
-    maxLabel.textContent = `${maxPrice} RSD`;
+    minLabel.textContent = `${currentMin} RSD`;
+    maxLabel.textContent = `${currentMax} RSD`;
 }

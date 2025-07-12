@@ -50,8 +50,8 @@ class HomeController extends Controller
       $query->where('location', 'like', '%' . $request->location . '%');
     }
 
-    if ($request->filled('category_id')) {
-      $query->where('category_id', $request->category_id);
+    if ($request->filled('category')) {
+      $query->where('category_id', $request->category);
     }
 
     return $query->paginate(10);
