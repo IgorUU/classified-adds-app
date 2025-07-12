@@ -63,6 +63,14 @@
           </div>
         </form>
 
+
+        <form method="POST" action="{{ route('admin.users.destroy', $user) }}"
+            onclick="return confirm('Are you sure you want to delete this user? You are going to delete all of his ads also.')">
+            @csrf
+            @method('DELETE')
+            <x-danger-button type="submit">Delete User</x-danger-button>
+        </form>
+
       </div>
     </div>
   </div>

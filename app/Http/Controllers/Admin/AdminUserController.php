@@ -91,8 +91,13 @@ class AdminUserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        //
+        $this->authorize('delete', $user);
+
+        $user->ads()->delete();
+        $user->delete();
+
+        return Redirect::route('admin.users.index')->with('success', 'User sucessfully deleted');
     }
 }
