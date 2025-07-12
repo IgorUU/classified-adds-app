@@ -31,7 +31,7 @@ class AuthenticatedSessionController extends Controller
         $user = Auth::user();
         $route = match($user->role) {
             'admin' => route('admin.dashboard'),
-            default => route('profile.ads'),
+            default => route('profile.ads.index'),
         };
 
         return redirect()->intended($route);

@@ -17,6 +17,12 @@
                         :active="request()->routeIs('home')">
                         {{ __('Home') }}
                     </x-nav-link>
+                    @if (Auth::check() && Auth::user()->isAdmin())
+                        <x-nav-link :href="route('admin.dashboard')"
+                            :active="request()->routeIs('admin.dashboard')">
+                            {{ __('Dashboard') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -66,9 +72,10 @@
             @endauth
 
             @guest
-                <x-nav-link :href="route('login')" :active="request()->routeIs('login')">
-                    {{ __('Login') }}
-                </x-nav-link>
+            <x-nav-link :href="route('login')"
+                :active="request()->routeIs('login')">
+                {{ __('Login') }}
+            </x-nav-link>
             @endguest
 
             <!-- Hamburger -->
