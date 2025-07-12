@@ -18,10 +18,22 @@
                         {{ __('Home') }}
                     </x-nav-link>
                     @if (Auth::check() && Auth::user()->isAdmin())
-                        <x-nav-link :href="route('admin.dashboard')"
-                            :active="request()->routeIs('admin.dashboard')">
-                            {{ __('Dashboard') }}
-                        </x-nav-link>
+                    <x-nav-link :href="route('admin.dashboard')"
+                        :active="request()->routeIs('admin.dashboard')">
+                        {{ __('Dashboard') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('admin.ads.index')"
+                        :active="request()->routeIs('admin.ads.index')">
+                        {{ __('Ads') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('admin.categories.index')"
+                        :active="request()->routeIs('admin.categories.index')">
+                        {{ __('Categories') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('admin.users.index')"
+                        :active="request()->routeIs('admin.users.index')">
+                        {{ __('Users') }}
+                    </x-nav-link></var>
                     @endif
                 </div>
             </div>
