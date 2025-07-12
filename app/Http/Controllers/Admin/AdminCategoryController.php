@@ -39,7 +39,7 @@ class AdminCategoryController extends Controller
             'name' => 'required|string|max:255',
         ]);
 
-        $request->store($data);
+        Category::create($data);
 
         return Redirect::route('admin.categories.index')->with('success', 'Category created');
     }

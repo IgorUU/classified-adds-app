@@ -3,7 +3,7 @@
 @section('content')
 <h1
   class="text-4xl font-extrabold mb-6 text-center text-gray-800 tracking-wide">
-  {{ $category->name }}
+  New category
 </h1>
 
 @if ($errors->any())
@@ -18,15 +18,14 @@
 
 <div class="max-w-md mx-auto bg-white p-6 shadow rounded space-y-4">
   <form method="POST"
-    action="{{ route('admin.categories.update', $category) }}"
+    action="{{ route('admin.categories.store') }}"
     enctype="multipart/form-data" class="space-y-4">
     @csrf
-    @method('PUT')
 
     <div class="flex flex-col items-center">
       <label for="name" class="font-medium">Name:</label>
       <input name="name" placeholder="Name"
-        value="{{ old('name', $category->name) }}"
+        value="{{ old('name') }}"
         class="border rounded px-3 py-2 w-64">
     </div>
 
