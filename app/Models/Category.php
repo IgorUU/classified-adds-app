@@ -17,8 +17,6 @@ class Category extends Model
 
     /**
      * Returns ads belonging to the category.
-     *
-     * @return void
      */
     public function ads(): HasMany
     {

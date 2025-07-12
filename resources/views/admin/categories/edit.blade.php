@@ -6,6 +6,9 @@
     {{ $category->name }}
 </h1>
 
+<x-alert type="error"></x-alert>
+<x-alert type="success"></x-alert>
+
 @if ($errors->any())
 <div class="mb-4 p-4 bg-red-100 text-red-700 rounded max-w-md mx-auto">
     <ul>
@@ -41,4 +44,10 @@
         </div>
     </form>
 </div>
+<form method="POST" action="{{ route('admin.categories.destroy', $category) }}"
+    onclick="return confirm('Are you sure you want to delete this category?')">
+    @csrf
+    @method('DELETE')
+    <x-danger-button class="mt-6" type="submit">Delete category</x-danger-button>
+</form>
 @endsection

@@ -69,11 +69,20 @@ class AdminCategoryController extends Controller
         return Redirect::route('admin.categories.index')->with('success', 'Category updated');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy(Category $category)
     {
-        //
+        $this->authorize('delete', $category);
+
+        if ($category->ads()->exists()) {
+            return back()->with('error', 'Cannot delete category referenced by ads');
+        }
+
+        if ($category->children()->exists()) {
+            return back()->with('error', 'Cannot delete category with existing subcategories');
+        }
+
+        $category->delete();
+
+        return Redirect::route('admin.categories.index')->with('success', 'Add succesfully removed.');
     }
 }
