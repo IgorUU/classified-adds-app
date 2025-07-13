@@ -55,7 +55,9 @@ class AdminCategoryController extends Controller
     {
         $this->authorize('update', $category);
 
-        $categories = Category::where('id', '!=', $category->id)->get();
+        $categories = Category::whereNull('parent_id')
+            ->where('id', '!=', $category->id)
+            ->get();
 
         return view('admin.categories.edit', compact('category', 'categories'));
     }
