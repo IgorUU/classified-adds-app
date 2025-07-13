@@ -5,6 +5,7 @@ export function initPriceSlider(minPrice, maxPrice) {
     const slider = document.getElementById("price-slider");
 
     if (!slider) return;
+    
     const priceMin = document.getElementById("price_min");
     const priceMax = document.getElementById("price_max");
     const minLabel = document.getElementById("min-label");

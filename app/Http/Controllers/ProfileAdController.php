@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Ad;
 use App\Models\Category;
+use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -15,7 +17,7 @@ class ProfileAdController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
         $ads = Auth::user()->ads()->with('category')->latest()->paginate(10);
         return view('profile.ads.index', compact('ads'));
@@ -24,7 +26,7 @@ class ProfileAdController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
         $categories = Category::all();
         return view('profile.ads.create', compact('categories'));
@@ -33,7 +35,7 @@ class ProfileAdController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $data = $request->validate([
             'title' => 'required|string|max:255',
@@ -59,7 +61,7 @@ class ProfileAdController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Ad $ad)
+    public function edit(Ad $ad): View
     {
         $this->authorize('update', $ad);
 
@@ -70,7 +72,7 @@ class ProfileAdController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Ad $ad)
+    public function update(Request $request, Ad $ad): RedirectResponse
     {
         $this->authorize('update', $ad);
 
@@ -98,7 +100,7 @@ class ProfileAdController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Ad $ad)
+    public function destroy(Ad $ad): RedirectResponse
     {
         $this->authorize('delete', $ad);
 

@@ -5,11 +5,15 @@ namespace App\Http\Controllers\Public;
 use App\Http\Controllers\Controller;
 use App\Models\Ad;
 use App\Models\Category;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-  public function index(Request $request)
+  /**
+   * Shows the home page with ads.
+   */
+  public function index(Request $request): View
   {
 
     $ads = $this->getFilteredAds($request);

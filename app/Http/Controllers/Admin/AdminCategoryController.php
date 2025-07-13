@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -15,7 +17,7 @@ class AdminCategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
         $categories = Category::latest()->paginate(10);
         return view('admin.categories.index', compact('categories'));
@@ -24,7 +26,7 @@ class AdminCategoryController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
         $categories = Category::all();
 
@@ -34,7 +36,7 @@ class AdminCategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $data = $request->validate([
             'name' => 'required|string|max:255',
@@ -49,7 +51,7 @@ class AdminCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category)
+    public function edit(Category $category): View
     {
         $this->authorize('update', $category);
 
@@ -61,7 +63,7 @@ class AdminCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Category $category): RedirectResponse
     {
         $data = $request->validate([
             'name' => 'required|string|max:255',
@@ -81,7 +83,10 @@ class AdminCategoryController extends Controller
         return Redirect::route('admin.categories.index')->with('success', 'Category updated');
     }
 
-    public function destroy(Category $category)
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Category $category): RedirectResponse
     {
         $this->authorize('delete', $category);
 

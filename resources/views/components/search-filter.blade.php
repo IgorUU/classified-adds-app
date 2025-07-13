@@ -1,5 +1,6 @@
 <form method="GET" action="{{ route('home') }}" class="space-y-4">
 
+    <!-- Ad -->
     <div class="flex items-center gap-4">
         <div>
             <label for="title_description"
@@ -9,6 +10,7 @@
                 class=" border rounded px-3 py-2 w-48">
         </div>
 
+        <!-- Price -->
         <div class="flex-1">
             <label for="price" class="block text-sm font-medium">Price</label>
 
