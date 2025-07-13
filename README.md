@@ -85,7 +85,7 @@ It's recommended to have [DDEV](https://ddev.readthedocs.io/en/stable/) installe
 
 ## Author
 
-**Igor** - Developer and maintainer of this classified ads platform.
+**Igor Ušumović** - Developer and maintainer of this classified ads platform.
 
 ## License
 
