@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
+use App\Models\Ad;
 use App\Models\Category;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Contracts\View\View;
 
 class CategoryController extends Controller
@@ -13,7 +15,20 @@ class CategoryController extends Controller
    */
   public function show(Category $category): View
   {
-    $ads = $category->ads()->with('user')->latest()->paginate(10);
+    $ads = $this->getCategoryAds($category);
+
     return view('category.show', compact('category', 'ads'));
+  }
+
+  /**
+   * Retrieves all ads for the given category, including its children.
+   */
+  protected function getCategoryAds(Category $category): LengthAwarePaginator
+  {
+    $categoryIds = Category::where('id', $category->id)
+      ->orWhere('parent_id', $category->id)
+      ->pluck('id');
+
+    return Ad::whereIn('category_id', $categoryIds)->latest()->paginate(10);
   }
 }
