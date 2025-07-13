@@ -21,18 +21,24 @@ It's recommended to have [DDEV](https://ddev.readthedocs.io/en/stable/) installe
    ddev npm install
    ```
 
-3. **Set up the database**
+3. **Environment setup**
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
+
+4. **Set up the database**
    ```bash
    ddev artisan migrate
    ddev artisan db:seed
    ```
 
-4. **Build assets**
+5. **Build assets**
    ```bash
    ddev npm run build
    ```
 
-5. **Access the application**
+6. **Access the application**
    - Main site: https://classified-adds-app.ddev.site
    - Vite dev server: https://classified-adds-app.ddev.site:5173
 
