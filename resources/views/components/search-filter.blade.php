@@ -51,5 +51,8 @@
         </div>
     </div>
 
-    <x-primary-button type="submit">Search</x-primary-button>
+    <div class="flex items-center gap-4">
+        <x-primary-button type="submit">Search</x-primary-button>
+        <a href="{{ route('home') }}" class="inline-block px-4 py-2 border border-gray-300 rounded bg-white text-gray-700 hover:bg-gray-100 text-sm font-medium">Reset</a>
+    </div>
 </form>
